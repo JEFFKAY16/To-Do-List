@@ -1,25 +1,25 @@
-import './styles.css'
+import './styles.css';
 
 const tasks = [
   {
     description: 'Play Games',
     completed: false,
-    index: 0
+    index: 0,
   },
   {
     description: 'Study JavaScript',
     completed: false,
-    index: 1
+    index: 1,
   },
   {
     description: 'Sleep',
     completed: false,
-    index: 2
+    index: 2,
   },
   {
     description: 'Hang out with girlfriend',
     completed: false,
-    index: 3
+    index: 3,
   },
 ];
 

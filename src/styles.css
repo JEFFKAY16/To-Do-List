@@ -83,7 +83,6 @@ header span {
   cursor: pointer;
   opacity: 0.4;
   margin-right: 10px;
-  
 }
 
 .enter-key:hover {
@@ -96,7 +95,7 @@ header span {
   outline: none;
   padding: 10px;
   background: none;
-  color:rgb(173, 173, 173);
+  color: rgb(173, 173, 173);
   cursor: pointer;
 }
 
