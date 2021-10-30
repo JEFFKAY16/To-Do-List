@@ -1,6 +1,6 @@
 export default class List {
   constructor() {
-      const currentData = JSON.parse(localStorage.getItem('todo-list'));
+    const currentData = JSON.parse(localStorage.getItem('todo-list'));
     if (currentData) {
       this.items = currentData;
     } else {
@@ -34,28 +34,27 @@ export default class List {
     const listSection = document.querySelector('.items');
     listSection.innerHTML = '';
     this.items.forEach((task) => {
-      let listItem = `
-      <li>`;
-        if (task.completed === true) {
-            listItem += `
-            <span class="material-icons update-status done" data-id="${task.index}">done</span>
-            <p class="line-through activity" data-id="${task.index}"  contenteditable="true">${task.description}</p>`;
-        } else {
-            listItem += `
-            <span class="material-icons update-status" data-id="${task.index}">check_box_outline_blank</span>
-            <p  class="activity" data-id="${task.index}" contenteditable="true">${task.description}</p>`;
-        }
-        listItem += `
-        <span class="material-icons more-info">more_vert</span>
-      </li>
-      `;
-      listSection.innerHTML += listItem;   
+    let listItem = `
+    <li>`;
+    if (task.completed === true) {
+      listItem += `
+      <span class="material-icons update-status done" data-id="${task.index}">done</span>
+      <p class="line-through activity" data-id="${task.index}"  contenteditable="true">${task.description}</p>`;
+    } else {
+      listItem += `
+      <span class="material-icons update-status" data-id="${task.index}">check_box_outline_blank</span>
+      <p  class="activity" data-id="${task.index}" contenteditable="true">${task.description}</p>`;
+    }
+    listItem += `
+    <span class="material-icons more-info">more_vert</span>
+    </li>`;
+      listSection.innerHTML += listItem;
     });
     this.attachEvents();
-  }   
-
+  }
+  
   updateStatus(index) {
-    const arrIndex = index-1;
+    const arrIndex = index - 1;
     const currentStatus = this.items[arrIndex].completed;
     if (currentStatus === true) {
       currentStatus.completed = false;
@@ -72,8 +71,8 @@ export default class List {
     });
     // sort indexes
     this.items.sort((a, b) => {
-      if(a.index < b.index) return -1;
-      if(a.index > b.index) return 1;
+      if (a.index < b.index) return - 1;
+      if (a.index > b.index) return 1;
       return 0;
     });
     // save sorted items to localStorage
