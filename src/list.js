@@ -25,7 +25,7 @@ export default class List {
       <p  class="activity" data-id="${task.index}" contenteditable="true">${task.description}</p>`;
       }
       listItem += `
-    <span class="material-icons more-info">more_vert</span>
+    <span class="material-icons more-info delete-item" data-id="${task.index}">delete</span>
     </li>`;
       listSection.innerHTML += listItem;
     });
@@ -67,6 +67,7 @@ export default class List {
     this.displayItems();
   }
 
+  updateItem(index)
   clearCompleted() {
     const unclearedItems = this.items.filter((item) => item.completed === false);
     this.items = unclearedItems;
@@ -100,7 +101,7 @@ export default class List {
     // delete Item
     const allItems = document.querySelectorAll('.delete-item');
     allItems.forEach((item) => {
-      item.addEventListener('clicked', (e) => {
+      item.addEventListener('click', (e) => {
         const index = e.target.getAttribute('data-id');
         this.removeItem(index);
       });
