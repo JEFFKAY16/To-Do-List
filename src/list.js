@@ -67,7 +67,11 @@ export default class List {
     this.displayItems();
   }
 
-  updateItem(index)
+  editItem(task, index) {
+    this.items[index - 1].description = task;
+    this.saveItems();
+  }
+
   clearCompleted() {
     const unclearedItems = this.items.filter((item) => item.completed === false);
     this.items = unclearedItems;
@@ -104,6 +108,15 @@ export default class List {
       item.addEventListener('click', (e) => {
         const index = e.target.getAttribute('data-id');
         this.removeItem(index);
+      });
+    });
+    // edit items
+    const activities = document.querySelectorAll('.activity');
+    activities.forEach((activity) => {
+      activity.addEventListener('input', (e) => {
+        const index = e.target.getAttribute('data-id');
+        const newValue = e.target.innerText;
+        this.editItem(newValue, index);
       });
     });
   }
