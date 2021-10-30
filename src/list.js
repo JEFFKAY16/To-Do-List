@@ -4,28 +4,7 @@ export default class List {
     if (currentData) {
       this.items = currentData;
     } else {
-      this.items = [
-        {
-          description: 'Play Games',
-          completed: false,
-          index: 1,
-        },
-        {
-          description: 'Study JavaScript',
-          completed: false,
-          index: 2,
-        },
-        {
-          description: 'Sleep',
-          completed: false,
-          index: 3,
-        },
-        {
-          description: 'Hang out with girlfriend',
-          completed: false,
-          index: 4,
-        },
-      ];
+      this.items = [];
     }
   }
 
@@ -79,7 +58,28 @@ export default class List {
     localStorage.setItem('todo-list', JSON.stringify(this.items));
   }
 
+  addItem(name) {
+    this.items.push({
+      description: name,
+      completed: false,
+      index: this.items.length,
+    });
+    this.displayItems();
+  }
+
+  clearCompleted() {
+    const unclearedItems = this.items.filter((item) => item.completed === false);
+    this.items = unclearedItems;
+    this.displayItems();
+  }
+
+  removeItem(index) {
+    this.items.splice(index - 1, 1);
+    this.displayItems();
+  }
+
   attachEvents() {
+    // update item status
     const tasks = document.querySelectorAll('.update-status');
     tasks.forEach((task) => {
       task.addEventListener('click', (e) => {
@@ -95,6 +95,14 @@ export default class List {
           e.target.classList.add('done');
         }
         this.displayItems();
+      });
+    });
+    // delete Item
+    const allItems = document.querySelectorAll('.delete-item');
+    allItems.forEach((item) => {
+      item.addEventListener('clicked', (e) => {
+        const index = e.target.getAttribute('data-id');
+        this.removeItem(index);
       });
     });
   }
