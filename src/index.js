@@ -1,5 +1,5 @@
-import './styles.css'
-import List from './list'
+import './styles.css';
+import List from './list';
 
 const todoList = new List();
 
